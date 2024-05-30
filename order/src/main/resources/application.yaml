@@ -1,0 +1,19 @@
+spring:
+  application:
+    name:
+      order
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3307/order
+    username: root
+    password: root
+server:
+  port:
+    8081
