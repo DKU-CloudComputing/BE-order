@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-deployment
+  namespace: order
+spec:
+  selector:
+    matchLabels:
+      app: order
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        - image: dipic/order-image:latest
+          name: order
+          ports:
+            - containerPort: 8081
+              name: order
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mariadb://db-order-service.db-order.svc.cluster.local:3307/order
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: root
